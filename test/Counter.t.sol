@@ -35,9 +35,16 @@ contract CounterTest is Test {
         assertEq(counter.number(), x);
     }
 
-    //Use vm.assume does not allow 50 and 100
+    //Use vm.assume to not allow 50 and 100
     function notAllowed(uint256 x) public{
         vm.assume(x != 50 && x!=100);
+        counter.setNumber(x);
+        assertEq(counter.number(), x);
+    }
+
+    //Use vm.assume to allow even numbers only
+    function evenNo(uint256 x) public{
+        vm.assume(x%2==0);
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
