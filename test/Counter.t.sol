@@ -27,4 +27,11 @@ contract CounterTest is Test {
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
+
+    //Use vm.ssume to set a range
+    function setRange(uint256 x) public {
+        vm.assume(x >=1 && x <=20);
+        counter.setNumber(x);
+        assertEq(counter.number(), x);
+    }
 }
