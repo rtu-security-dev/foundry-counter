@@ -78,4 +78,11 @@ contract CounterTest is Test {
         vm.expectRevert();
         counter.increment();
     }
+
+    //Use vm.expectRevert to avoid underflow (intentional)
+    function test_expectedUnderflow() public{
+        counter.setNumber(type(uint256).min);
+        vm.expectRevert();
+        counter.decrement();
+    }
 }
