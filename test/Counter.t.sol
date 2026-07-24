@@ -99,4 +99,10 @@ contract CounterTest is Test {
         counter.setNumber(type(uint256).max);
         assertEq(counter.number(), type(uint256).max);
     }
+
+    //Can the counter store 2
+    function test_decimal() public{
+        counter.setNumber(2);
+        assertEq(counter.number(), 2);
+    }
 }
