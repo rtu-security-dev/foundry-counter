@@ -133,4 +133,17 @@ contract CounterTest is Test {
         counter.decrement();
         assertEq(counter.number(), type(uint256).max -1);
     }
+
+    //
+
+    
+    //Testing for multiple operations
+    function test_multipleOperations() public{
+        counter.setNumber(500);
+        counter.increment(); //501
+        counter.decrement(); //500
+        counter.decrement(); //499
+        counter.increment(); //500
+        assertEq(counter.number(), 500);
+    }
 }
