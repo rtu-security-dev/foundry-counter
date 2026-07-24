@@ -48,4 +48,12 @@ contract CounterTest is Test {
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
+
+    //Use vm.assume to filter values so it wont overflow
+    function test_avoidOverflow(uint256 x) public{
+        vm.assume(x < type(uint256).max);
+        counter.setNumber(x);
+        counter.increment();
+        assertEq(counter.number(), x+1);
+    }
 }
