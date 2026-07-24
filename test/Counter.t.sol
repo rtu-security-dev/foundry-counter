@@ -93,4 +93,10 @@ contract CounterTest is Test {
         counter.setNumber(0);
         assertEq(counter.number(), 0);
     }
+
+    //Can the counter store the maximum value
+    function test_counterMax() public{
+        counter.setNumber(type(uint256).max);
+        assertEq(counter.number(), type(uint256).max);
+    }
 }
