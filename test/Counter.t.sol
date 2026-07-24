@@ -56,4 +56,11 @@ contract CounterTest is Test {
         counter.increment();
         assertEq(counter.number(), x + 1);
     }
+
+    //Test decrement function with number 10
+    function test_dcrementOf10() public{
+        counter.setNumber(10);
+        counter.decrement();
+        assertEq(counter.number(), 9);
+    }
 }
