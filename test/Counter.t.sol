@@ -112,4 +112,11 @@ contract CounterTest is Test {
         counter.increment();
         assertEq(counter.number(), 1);
     }
+
+    //Can the counter decrement from 1 to 0
+    function test_decrement1To0() public{
+        counter.setNumber(1);
+        counter.decrement();
+        assertEq(counter.number(), 0);
+    }
 }
