@@ -30,30 +30,30 @@ contract CounterTest is Test {
 
     //Use vm.assume to set a range
     function test_setRange(uint256 x) public {
-        vm.assume(x >=1 && x <=20);
+        vm.assume(x >= 1 && x <= 20);
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
 
     //Use vm.assume to not allow 50 and 100
-    function test_notAllowed(uint256 x) public{
-        vm.assume(x != 50 && x!=100);
+    function test_notAllowed(uint256 x) public {
+        vm.assume(x != 50 && x != 100);
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
 
     //Use vm.assume to allow even numbers only
-    function test_evenNo(uint256 x) public{
-        vm.assume(x%2==0);
+    function test_evenNo(uint256 x) public {
+        vm.assume(x % 2 == 0);
         counter.setNumber(x);
         assertEq(counter.number(), x);
     }
 
     //Use vm.assume to filter values so it wont overflow
-    function test_avoidOverflow(uint256 x) public{
+    function test_avoidOverflow(uint256 x) public {
         vm.assume(x < type(uint256).max);
         counter.setNumber(x);
         counter.increment();
-        assertEq(counter.number(), x+1);
+        assertEq(counter.number(), x + 1);
     }
 }
