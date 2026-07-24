@@ -71,4 +71,11 @@ contract CounterTest is Test {
         counter.decrement();
         assertEq(counter.number(), x-1);
     }
+
+    //Use vm.expectRevert to avoid overflow (intentional)
+    function test_expectedOverflow() public{
+        counter.setNumber(type(uint256).max);
+        vm.expectRevert();
+        counter.increment();
+    }
 }
