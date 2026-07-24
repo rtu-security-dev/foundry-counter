@@ -101,7 +101,7 @@ contract CounterTest is Test {
     }
 
     //Can the counter store 2
-    function test_decimal() public{
+    function test_counterStoreOf2() public{
         counter.setNumber(2);
         assertEq(counter.number(), 2);
     }
