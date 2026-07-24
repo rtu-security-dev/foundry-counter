@@ -85,4 +85,12 @@ contract CounterTest is Test {
         vm.expectRevert();
         counter.decrement();
     }
+
+    //Testing Boundries//
+
+    //Can the counter store 0
+    function test_counterStoreOf0() public{
+        counter.setNumber(0);
+        assertEq(counter.number(), 0);
+    }
 }
