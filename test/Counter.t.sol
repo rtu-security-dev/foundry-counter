@@ -126,4 +126,11 @@ contract CounterTest is Test {
         counter.increment();
         assertEq(counter.number(), type(uint256).max);
     }
+
+    //Can the counter decrement from the maximum value
+    function test_maximumDecrement() public{
+        counter.setNumber(type(uint256).max);
+        counter.decrement();
+        assertEq(counter.number(), type(uint256).max -1);
+    }
 }
