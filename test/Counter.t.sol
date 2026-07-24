@@ -63,4 +63,12 @@ contract CounterTest is Test {
         counter.decrement();
         assertEq(counter.number(), 9);
     }
+
+    //Use vm.assume to aviod underflow
+    function test_avoidUnderFlow(uint256 x) public{
+        vm.assume(x > 0);
+        counter.setNumber(x);
+        counter.decrement();
+        assertEq(counter.number(), x-1);
+    }
 }
