@@ -105,4 +105,11 @@ contract CounterTest is Test {
         counter.setNumber(2);
         assertEq(counter.number(), 2);
     }
+
+    //Can the counter increment from 0 to 1
+    function test_increment0To1() public{
+        counter.setNumber(0);
+        counter.increment();
+        assertEq(counter.number(), 1);
+    }
 }
