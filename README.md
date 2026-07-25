@@ -1,3 +1,5 @@
+Project Status: Complete – July 2026
+
 # Foundry Counter
 
     Using Foundry a very simply smart counter contract was built. Helped to learn Solidity testing, access controls and fundamentals of fuzz testing.
