@@ -151,50 +151,47 @@ contract CounterTest is Test {
 
     //vm.prank calls//
 
-    //Can number be set by owner 
-    function test_numberSetttingOwner () public {
+    //Can number be set by owner
+    function test_numberSetttingOwner() public {
         vm.prank(owner);
         counter.setNumber(12);
         assertEq(counter.number(), 12);
     }
 
-    //Can number be set by attacker 
-    function test_numberSetttingAttacker () public{
+    //Can number be set by attacker
+    function test_numberSetttingAttacker() public {
         vm.prank(attacker);
         vm.expectRevert();
         counter.setNumber(23);
     }
 
     //Can number be set by anyone
-    function test_numberSetttingAnyone() public{
-        counter.setNumber(10); 
+    function test_numberSetttingAnyone() public {
+        counter.setNumber(10);
         //this would pass reagrdless of of no vm.prank(owner) command because the test contract deploys Counter contract, thus becoming an owner
-
 
         vm.prank(attacker);
         counter.increment();
-        
+
         assertEq(counter.number(), 11);
     }
 
-    //Can number be set by an random address thats not a owner 
-    function test_randomAddress (address RandomAdd) public {
-        vm.assume (RandomAdd != owner);
+    //Can number be set by an random address thats not a owner
+    function test_randomAddress(address RandomAdd) public {
+        vm.assume(RandomAdd != owner);
 
         vm.prank(RandomAdd);
         vm.expectRevert();
         counter.setNumber(1);
     }
 
-    //Tests a function where alice can increment but can not set it as a number 
-    function test_aliceIncrements () public {
+    //Tests a function where alice can increment but can not set it as a number
+    function test_aliceIncrements() public {
         address alice = address(0x1);
 
         vm.prank(owner);
         counter.setNumber(50);
         assertEq(counter.number(), 50);
-
-
 
         vm.startPrank(alice);
         counter.increment();
