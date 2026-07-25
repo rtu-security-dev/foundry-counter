@@ -148,4 +148,18 @@ contract CounterTest is Test {
         counter.increment(); //500
         assertEq(counter.number(), 500);
     }
+
+    //vm.prank calls//
+
+    function test_numberSetttingOwner () public {
+        vm.prank(owner);
+        counter.setNumber(12);
+        assertEq(counter.number(), 12);
+    }
+
+    function test_numberSetttingAttacker () public{
+        vm.prank(attacker);
+        vm.expectRevert();
+        counter.setNumber(23);
+    }
 }
