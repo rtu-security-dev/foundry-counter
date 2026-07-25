@@ -11,6 +11,8 @@ contract Counter {
     }
 
     function setNumber(uint256 newNumber) public {
+        //owner can only set the number 
+        require( msg.sender == owner, "Only owner can set a number");
         number = newNumber;
     }
 
