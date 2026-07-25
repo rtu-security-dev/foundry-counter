@@ -185,4 +185,23 @@ contract CounterTest is Test {
         vm.expectRevert();
         counter.setNumber(1);
     }
+
+    //Tests a function where alice can increment but can not set it as a number 
+    function test_aliceIncrements () public {
+        address alice = address(0x1);
+
+        vm.prank(owner);
+        counter.setNumber(50);
+        assertEq(counter.number(), 50);
+
+
+
+        vm.startPrank(alice);
+        counter.increment();
+        assertEq(counter.number(), 51);
+
+        vm.expectRevert();
+        counter.setNumber(51);
+        vm.stopPrank();
+    }
 }
