@@ -6,10 +6,13 @@ import {Counter} from "../src/Counter.sol";
 
 contract CounterTest is Test {
     Counter public counter;
+    address public owner;
+    address public attacker;
 
     function setUp() public {
         counter = new Counter();
-        counter.setNumber(0);
+        owner = counter.owner();
+        attacker = address(0xbad);
     }
 
     function test_Increment() public {
