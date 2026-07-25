@@ -162,4 +162,15 @@ contract CounterTest is Test {
         vm.expectRevert();
         counter.setNumber(23);
     }
+
+    function test_numberSetttingAnyone() public{
+        counter.setNumber(10); 
+        //this would pass reagrdless of of no vm.prank(owner) command because the test contract deploys Counter contract, thus becoming an owner
+
+
+        vm.prank(attacker);
+        counter.increment();
+        
+        assertEq(counter.number(), 11);
+    }
 }
