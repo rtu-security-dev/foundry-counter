@@ -151,18 +151,21 @@ contract CounterTest is Test {
 
     //vm.prank calls//
 
+    //Can number be set by owner 
     function test_numberSetttingOwner () public {
         vm.prank(owner);
         counter.setNumber(12);
         assertEq(counter.number(), 12);
     }
 
+    //Can number be set by attacker 
     function test_numberSetttingAttacker () public{
         vm.prank(attacker);
         vm.expectRevert();
         counter.setNumber(23);
     }
 
+    //Can number be set by anyone
     function test_numberSetttingAnyone() public{
         counter.setNumber(10); 
         //this would pass reagrdless of of no vm.prank(owner) command because the test contract deploys Counter contract, thus becoming an owner
@@ -172,5 +175,14 @@ contract CounterTest is Test {
         counter.increment();
         
         assertEq(counter.number(), 11);
+    }
+
+    //Can number be set by an random address thats not a owner 
+    function test_randomAddress (address RandomAdd) public {
+        vm.assume (RandomAdd != owner);
+
+        vm.prank(RandomAdd);
+        vm.expectRevert();
+        counter.setNumber(1);
     }
 }
